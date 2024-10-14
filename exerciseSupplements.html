@@ -112,14 +112,6 @@
         navLinks.classList.toggle('show');
         hamburger.classList.toggle('active');
     });
-    document.querySelectorAll('.botonTarjeta').forEach(button => {
-        button.addEventListener('click', () => {
-            const productCard = button.closest('.contenedorTarjeta'); // Find the closest product card
-            const productName = productCard.querySelector('.h2').innerText; // Get product name
-            const productPrice = parseFloat(productCard.querySelector('p').innerText.replace('$', '')); // Get product price
-            addToCart(productName, productPrice); // Call addToCart with the product details
-        });
-    });
 
     async function addToCart(productName, productPrice) {
         // Check if there is already a cart in localStorage
@@ -144,7 +136,7 @@
         localStorage.setItem('cart', JSON.stringify(cart));
 
         // Call a function to handle any additional actions (like an API call)
-        await saveCartToServer(cart); // Example of an async function
+        await saveCartToServer(cart); // This will only be called when the button is clicked
 
         // Alert the user
         alert(`${productName} has been added to the cart!`);
@@ -172,7 +164,16 @@
         }
     }
 
-
+    // Add event listeners to each Add to Cart button
+    document.querySelectorAll('.botonTarjeta').forEach(button => {
+        button.addEventListener('click', () => {
+            const productCard = button.closest('.contenedorTarjeta'); // Find the closest product card
+            const productName = productCard.querySelector('.h2').innerText; // Get product name
+            const productPrice = parseFloat(productCard.querySelector('p').innerText.replace('$', '')); // Get product price
+            addToCart(productName, productPrice); // Call addToCart with the product details
+        });
+    });
 </script>
+
 </body>
 </html>
