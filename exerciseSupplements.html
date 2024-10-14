@@ -124,6 +124,7 @@
             if (existingProduct) {
                 // If the product is already in the cart, increase its quantity
                 existingProduct.quantity += 1;
+                console.log("the product is: ", existingProduct.name, existingProduct.price)
             } else {
                 // If the product is not in the cart, add it with a quantity of 1
                 cart.push({
@@ -138,7 +139,7 @@
             localStorage.setItem('cart', JSON.stringify(cart));
             console.log("it has arrived before saving to server")
             // Call a function to handle any additional actions (like an API call)
-            await saveCartToServer(cart); // This will only be called when the button is clicked
+            await saveCartToServer(cart[cart.length - 1]); // This will only be called when the button is clicked
 
             // Alert the user
             alert(`${productName} has been added to the cart!`);
