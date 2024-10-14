@@ -131,11 +131,12 @@
                     price: productPrice,
                     quantity: 1
                 });
+                console.log("the product is: ", productName, productPrice)
             }
 
             // Save the updated cart back to localStorage
             localStorage.setItem('cart', JSON.stringify(cart));
-
+            console.log("it has arrived before saving to server")
             // Call a function to handle any additional actions (like an API call)
             await saveCartToServer(cart); // This will only be called when the button is clicked
 
