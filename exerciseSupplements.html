@@ -151,7 +151,7 @@
         try {
             const lastAddedProduct = cart[cart.length - 1];
 
-            const response = await fetch('/api/cart', {
+            const response = await fetch('./api/cart', {
                 method: 'POST',
                 body: JSON.stringify(lastAddedProduct), // Send only the new product
                 headers: {
