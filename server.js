@@ -23,8 +23,8 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.use(express.static('public'));
 
 // Include API routes
-const cartRoutes = require('./api/cart');
-const checkoutRoutes = require('./api/checkout');
+const cartRoutes = require('/api/cart');
+const checkoutRoutes = require('/api/checkout');
 
 app.use('/api/cart', cartRoutes);       // Cart-related endpoints
 app.use('/api/checkout', checkoutRoutes);  // Payment/checkout-related endpoints
