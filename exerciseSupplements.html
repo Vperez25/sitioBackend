@@ -149,9 +149,11 @@
 
     async function saveCartToServer(cart) {
         try {
+            const lastAddedProduct = cart[cart.length - 1];
+
             const response = await fetch('/api/cart', {
                 method: 'POST',
-                body: JSON.stringify(cart),
+                body: JSON.stringify(lastAddedProduct), // Send only the new product
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -163,6 +165,7 @@
 
             const result = await response.json();
             console.log('Cart saved successfully:', result);
+            alert("Cart saved successfully");
         } catch (error) {
             console.error('Error saving cart:', error);
             alert('There was a problem saving your cart. Please try again.');

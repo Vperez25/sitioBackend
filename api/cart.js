@@ -20,7 +20,8 @@ router.post('/', async (req, res) => {
         await newProduct.save();
         res.json(newProduct);
     } catch (error) {
-        res.status(500).json({ error: 'Failed to add product' });
+        console.error('Error adding product to cart:', error); // Log the error
+        res.status(500).json({ error: 'Failed to add product', details: error.message }); // Send back error details
     }
 });
 
