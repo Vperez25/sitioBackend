@@ -120,7 +120,7 @@
 
             // Check if the product is already in the cart
             let existingProduct = cart.find(item => item.name === productName);
-
+            console.log("it has arrived before checking the existing products")
             if (existingProduct) {
                 // If the product is already in the cart, increase its quantity
                 existingProduct.quantity += 1;
