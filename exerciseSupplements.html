@@ -112,6 +112,15 @@
         navLinks.classList.toggle('show');
         hamburger.classList.toggle('active');
     });
+    document.querySelectorAll('.botonTarjeta').forEach(button => {
+        button.addEventListener('click', () => {
+            const productCard = button.closest('.contenedorTarjeta'); // Find the closest product card
+            const productName = productCard.querySelector('.h2').innerText; // Get product name
+            const productPrice = parseFloat(productCard.querySelector('p').innerText.replace('$', '')); // Get product price
+            addToCart(productName, productPrice); // Call addToCart with the product details
+        });
+    });
+
     async function addToCart(productName, productPrice) {
         // Check if there is already a cart in localStorage
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
