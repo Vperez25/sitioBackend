@@ -114,32 +114,37 @@
     });
 
     async function addToCart(productName, productPrice) {
-        // Check if there is already a cart in localStorage
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        try {
+            // Check if there is already a cart in localStorage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-        // Check if the product is already in the cart
-        let existingProduct = cart.find(item => item.name === productName);
+            // Check if the product is already in the cart
+            let existingProduct = cart.find(item => item.name === productName);
 
-        if (existingProduct) {
-            // If the product is already in the cart, increase its quantity
-            existingProduct.quantity += 1;
-        } else {
-            // If the product is not in the cart, add it with a quantity of 1
-            cart.push({
-                name: productName,
-                price: productPrice,
-                quantity: 1
-            });
+            if (existingProduct) {
+                // If the product is already in the cart, increase its quantity
+                existingProduct.quantity += 1;
+            } else {
+                // If the product is not in the cart, add it with a quantity of 1
+                cart.push({
+                    name: productName,
+                    price: productPrice,
+                    quantity: 1
+                });
+            }
+
+            // Save the updated cart back to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Call a function to handle any additional actions (like an API call)
+            await saveCartToServer(cart); // This will only be called when the button is clicked
+
+            // Alert the user
+            alert(`${productName} has been added to the cart!`);
+        } catch (error) {
+            console.error('Error adding to cart:', error);
+            alert('There was a problem adding the item to the cart. Please try again.');
         }
-
-        // Save the updated cart back to localStorage
-        localStorage.setItem('cart', JSON.stringify(cart));
-
-        // Call a function to handle any additional actions (like an API call)
-        await saveCartToServer(cart); // This will only be called when the button is clicked
-
-        // Alert the user
-        alert(`${productName} has been added to the cart!`);
     }
 
     async function saveCartToServer(cart) {
