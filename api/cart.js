@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Product = require('../models/Product');  // Import Mongoose Product model
+const Product = require('/models/Product');  // Import Mongoose Product model
 
 // Get cart items
 router.get('/', async (req, res) => {

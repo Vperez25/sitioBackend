@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart</title>
-    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="/styles/style.css">
     <link rel="stylesheet" href="../https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://js.stripe.com/v3/"></script> <!-- Stripe.js for payments -->
 </head>
 <body>
 <header class="header">
-    <a href="/index.html"><img src="../img/logo2.png" class="logo"></a>
+    <a href="/index.html"><img src="/img/logo2.png" class="logo"></a>
     <nav id="navbar" class="nav-links">
         <div class="dropdown">
             <button class="boton">Shop</button>
@@ -21,7 +21,7 @@
         </div>
         <button class="boton">About Us</button>
         <button class="boton"><a href="/ContactUs.html">Contact</a></button>
-        <a href="/shoppingCart.html"><img src="../img/cart.png" class="carrito"></a>
+        <a href="/shoppingCart.html"><img src="/img/cart.png" class="carrito"></a>
     </nav>
 </header>
 
@@ -42,8 +42,8 @@
         <p>Get in touch at (1) 999-999-9999 or reach out to us on social media for support with our products.</p>
     </div>
     <div class="footer-icons">
-        <img src="../img/facebookIcon.png" class="icons">
-        <img src="../img/twitterIcon.png" class="icons">
+        <img src="/img/facebookIcon.png" class="icons">
+        <img src="/img/twitterIcon.png" class="icons">
     </div>
 </footer>
 
@@ -65,7 +65,7 @@
     // Fetch cart items from the backend
     async function fetchCartItems() {
         try {
-            const response = await fetch('../api/cart');
+            const response = await fetch('/api/cart');
             if (!response.ok) throw new Error('Failed to fetch cart items');
 
             const items = await response.json();
@@ -112,7 +112,7 @@
     async function updateQuantity(itemId, newQuantity) {
         if (newQuantity <= 0) return;  // Prevent quantity from going below 1
 
-        await fetch(`../api/cart/${itemId}`, {
+        await fetch(`/api/cart/${itemId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ quantity: newQuantity })
@@ -124,7 +124,7 @@
 
     // Remove item from the cart
     async function removeItem(itemId) {
-        await fetch(`../api/cart/${itemId}`, {
+        await fetch(`/api/cart/${itemId}`, {
             method: 'DELETE'
         });
 
@@ -134,7 +134,7 @@
 
     // Proceed to payment
     async function proceedToPay() {
-        const response = await fetch('../api/checkout', {
+        const response = await fetch('/api/checkout', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ items: cart, total: calculateTotalAmount() })
