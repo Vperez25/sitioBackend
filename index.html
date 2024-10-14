@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NatureBio</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="header">
+
+    <a href="index.html"><img src="img/logo2.png" class="logo"></a>
+
+    <nav id="navbar" class="nav-links">
+        <div class="dropdown">
+            <button class="boton">Shop</button>
+            <div class="dropdown-content">
+                <a href="overallHealth.html">Overall Health</a>
+                <a href="exerciseSupplements.html">Exercise Supplements</a>
+            </div>
+        </div>
+        <button class="boton">About Us</button>
+        <button class="boton"><a href="ContactUs.html">Contact</a></button>
+        <a href="shoppingCart.html"><img src="img/cart.png" class="carrito"></a>
+    </nav>
+
+
+    <button class="hamburger-menu" id="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+</header>
+
+
+<section class="nature-section">
+    <div class="shop-now">
+        <h1>Welcome to NatureBio</h1>
+        <p>Your journey to better health begins here.</p>
+        <button class="shop-now-button">Shop Now</button>
+    </div>
+</section>
+
+<main >
+    <div class="row1">
+        <img src="img/mainImg.jpg" class="mainImg">
+        <div class="p-row">
+            <p>Discover a healthier way of life
+                with our natural products.
+                From the careful selection of
+                organic ingredients to the
+                packaging, we are proud to
+                deliver the best natural
+                products on the market.</p>
+        </div>
+
+    </div>
+    <div class="row2">
+        <div class="p-row">
+            With our 2-day shipping within
+            major U.S. cities and availability
+            in more than 50 countries, we
+            have a reach around the globe
+            as never before.
+        </div>
+        <img src="img/img_1.png" class="mainImg">
+    </div>
+</main>
+<footer>
+    <div class="footer-p">
+        <p>Contact Us</p>
+        <p>Get in touch at (1) 999-999-9999 or
+            in social media with our
+            award-winning customer service
+            support for any inquiries
+            about our products.</p>
+    </div>
+    <div class="footer-icons">
+        <img src="img/facebookIcon.png" class="icons">
+        <img src="img/twitterIcon.png" class="icons">
+    </div>
+</footer>
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navbar');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+        hamburger.classList.toggle('active');
+    });
+
+</script>
+</body>
+
+</html>

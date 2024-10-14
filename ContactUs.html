@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NatureBio</title>
+
+    <link rel="stylesheet" href="styles/ContactUsStyle.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="header">
+    <a href="index.html"><img src="img/logo2.png" class="logo"></a>
+
+    <nav id="navbar" class="nav-links">
+        <div class="dropdown">
+            <button class="boton">Shop</button>
+            <div class="dropdown-content">
+                <a href="overallHealth.html">Overall Health</a>
+                <a href="exerciseSupplements.html">Exercise Supplements</a>
+            </div>
+        </div>
+        <button class="boton">About Us</button>
+        <button class="boton"><a href="ContactUs.html">Contact</a></button>
+        <a href="shoppingCart.html"><img src="img/cart.png" class="carrito"></a>
+    </nav>
+
+
+    <button class="hamburger-menu" id="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+</header>
+<main>
+    <form action="#" method="post" class="main">
+        <h1>Contact</h1>
+
+        <label for="nombre">Name:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Your Name" required>
+
+        <label for="email">E-mail Address:</label>
+        <input type="email" id="email" name="email" placeholder="Your E-mail" required>
+
+        <label for="subject">Subject:</label>
+        <select id="subject" name="subject" required>
+            <option value="" disabled selected>Select a subject</option>
+            <option value="Sales">Sales</option>
+            <option value="Products">Products</option>
+            <option value="Shipping">Shipping</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <label for="mensaje">Message:</label>
+        <textarea id="mensaje" name="mensaje" rows="4" placeholder="Tell us about it" required></textarea>
+
+        <button class="formButton" type="submit">Send</button>
+    </form>
+</main>
+<footer>
+    <div class="footer-p">
+        <p>Contact Us</p>
+        <p>Get in touch at (1) 999-999-9999 or
+            in social media with our
+            award-winning customer service
+            support for any inquiries
+            about our products.</p>
+    </div>
+    <div class="footer-icons">
+        <img src="img/facebookIcon.png" class="icons">
+        <img src="img/twitterIcon.png" class="icons">
+    </div>
+</footer>
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navbar');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+        hamburger.classList.toggle('active');
+    });
+
+</script>
+</body>
+</html>
