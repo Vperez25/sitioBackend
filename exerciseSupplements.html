@@ -41,7 +41,7 @@
         </div>
         <p>$90</p>
         <div class="contenedorBoton">
-            <button class="botonTarjeta">Add to cart</button>
+            <button class="botonTarjeta" onclick="addToCart('Inmunocal', 90)">Add to cart</button>
         </div>
     </div>
     <div class="contenedorTarjeta">
@@ -52,7 +52,7 @@
         </div>
         <p>$120</p>
         <div class="contenedorBoton">
-            <button class="botonTarjeta">Add to cart</button>
+            <button class="botonTarjeta" onclick="addToCart('Inmunocal Platinum', 120)">Add to cart</button>
         </div>
     </div>
     <div class="contenedorTarjeta">
@@ -63,7 +63,7 @@
         </div>
         <p>$36</p>
         <div class="contenedorBoton">
-            <button class="botonTarjeta">Add to cart</button>
+            <button class="botonTarjeta" onclick="addToCart('Colagen Peptides', 36)">Add to cart</button>
         </div>
     </div>
     <div class="contenedorTarjeta">
@@ -74,20 +74,21 @@
         </div>
         <p>$21</p>
         <div class="contenedorBoton">
-            <button class="botonTarjeta">Add to cart</button>
+            <button class="botonTarjeta" onclick="addToCart('60 Billon Probiotic', 21)">Add to cart</button>
         </div>
     </div>
     <div class="contenedorTarjeta">
         <img class="img" src="img/probioticoW.png">
 
         <div class="contenidoTarjeta">
-            <h2 class="h2">Inmunocal</h2>
+            <h2 class="h2">60 Billion Probiotic Women's</h2>
         </div>
         <p>$21</p>
         <div class="contenedorBoton">
-            <button class="botonTarjeta">Add to cart</button>
+            <button class="botonTarjeta" onclick="addToCart('60 Billon Probiotic Women', 21)">Add to cart</button>
         </div>
     </div>
+
 </main>
 <footer>
     <div class="footer-p">
@@ -111,7 +112,30 @@
         navLinks.classList.toggle('show');
         hamburger.classList.toggle('active');
     });
+    function addToCart(productName, productPrice) {
+        // Check if there is already a cart in localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
+        // Check if the product is already in the cart
+        let existingProduct = cart.find(item => item.name === productName);
+
+        if (existingProduct) {
+            // If the product is already in the cart, increase its quantity
+            existingProduct.quantity += 1;
+        } else {
+            // If the product is not in the cart, add it with a quantity of 1
+            cart.push({
+                name: productName,
+                price: productPrice,
+                quantity: 1
+            });
+        }
+
+        // Save the updated cart back to localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        alert(`${productName} has been added to the cart!`);
+    }
 </script>
 </body>
 </html>
