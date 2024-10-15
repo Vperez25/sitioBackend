@@ -116,28 +116,28 @@
 
         async function addToCart(productName, productPrice) {
         try {
-        // Make a POST request to the backend API to add the item to the cart
+
         const response = await fetch('/api/cart', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',
-    },
+        },
         body: JSON.stringify({
         name: productName,
         price: productPrice
-    })
-    });
+        })
+        });
 
         const result = await response.json();
 
         if (response.ok) {
-        alert(result.message);  // Show a success message to the user
-    } else {
-        alert('Failed to add item to cart. Please try again.');
-    }
-    } catch (error) {
-        console.error('Error adding to cart:', error);
-        alert('Error adding item to cart.');
+             alert(result.message);  // Show a success message to the user
+        } else {
+            alert('Failed to add item to cart. Please try again.');
+        }
+        } catch (error) {
+            console.error('Error adding to cart:', error);
+            alert('Error adding item to cart.');
     }
     }
 
