@@ -129,14 +129,14 @@
 
             if (!response.ok) {
                 const errorText = await response.text();
-                throw new Error(errorText);  // Handle the error text from server
+                throw new Error(errorText);
             }
 
             const result = await response.json();
-            alert(result.message);  // Show success message
+            alert(result.message);
         } catch (error) {
             console.error('Error adding to cart:', error);
-            alert('Error adding item to cart: ' + error.message);  // Display error message
+            alert('Error adding item to cart: ' + error.message);
         }
     }
 
