@@ -6,7 +6,7 @@
     <title>Shopping Cart</title>
     <link rel="stylesheet" href="/styles/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://js.stripe.com/v3/"></script> <!-- Stripe.js for payments -->
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
 <header class="header">
@@ -58,21 +58,21 @@
     });
 
 
-    let cart = [];  // Array to store cart items
+    let cart = [];
     const cartItemsDiv = document.getElementById('cart-items');
     const totalAmountSpan = document.getElementById('total-amount');
 
-    // Fetch cart items from the backend
+
     async function fetchCartItems() {
         try {
             const response = await fetch('/api/cart');
             if (!response.ok) throw new Error('Failed to fetch cart items');
 
             const items = await response.json();
-            cart = items;  // Store items in the cart array
-            renderCartItems();  // Render items on the page
+            cart = items;
+            renderCartItems();
 
-            // Set up event listener for payment button here
+
             document.querySelector('.pay-button').addEventListener('click', proceedToPay);
         } catch (error) {
             console.error('Error fetching cart items:', error);
@@ -80,9 +80,9 @@
         }
     }
 
-    // Render cart items dynamically
+
     function renderCartItems() {
-        cartItemsDiv.innerHTML = '';  // Clear the existing cart items
+        cartItemsDiv.innerHTML = '';
 
         let totalAmount = 0;
         cart.forEach(item => {
@@ -102,15 +102,15 @@
             `;
 
             cartItemsDiv.appendChild(itemElement);
-            totalAmount += item.price * item.quantity;  // Update total amount
+            totalAmount += item.price * item.quantity;
         });
 
         totalAmountSpan.textContent = `$${totalAmount.toFixed(2)}`;
     }
 
-    // Update item quantity in the cart
+
     async function updateQuantity(itemId, newQuantity) {
-        if (newQuantity <= 0) return;  // Prevent quantity from going below 1
+        if (newQuantity <= 0) return;
 
         await fetch(`/api/cart/${itemId}`, {
             method: 'PUT',
@@ -118,21 +118,21 @@
             body: JSON.stringify({ quantity: newQuantity })
         });
 
-        // Re-fetch the updated cart items
+
         fetchCartItems();
     }
 
-    // Remove item from the cart
+
     async function removeItem(itemId) {
         await fetch(`/api/cart/${itemId}`, {
             method: 'DELETE'
         });
 
-        // Re-fetch the updated cart items
+
         fetchCartItems();
     }
 
-    // Proceed to payment
+
     async function proceedToPay() {
         const response = await fetch('/api/checkout', {
             method: 'POST',
@@ -141,14 +141,14 @@
         });
         const { clientSecret } = await response.json();
 
-        const stripe = Stripe('your-stripe-public-key');  // Use your Stripe public key
+        const stripe = Stripe('your-stripe-public-key');
         const { error } = await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: {
-                    // Collect card details (you'll need an element on the page for this)
+
                 },
                 billing_details: {
-                    // Customer details here
+
                 }
             }
         });
@@ -157,16 +157,16 @@
             console.error('Payment failed:', error);
         } else {
             alert('Payment successful!');
-            // Optionally, clear the cart
+
         }
     }
 
-    // Calculate the total amount in the cart
+
     function calculateTotalAmount() {
         return cart.reduce((total, item) => total + item.price * item.quantity, 0);
     }
 
-    // Fetch and display cart items on page load
+
     window.onload = fetchCartItems;
 </script>
 

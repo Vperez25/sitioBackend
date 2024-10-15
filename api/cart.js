@@ -1,48 +1,29 @@
 const express = require('express');
 const router = express.Router();
-const Product = require('/models/Product');  // Import Mongoose Product model
-
-// Get cart items
-router.get('/', async (req, res) => {
-    try {
-        const products = await Product.find();
-        res.json(products);
-    } catch (error) {
-        res.status(500).json({ error: 'Failed to fetch products' });
-    }
-});
+const CartItem = require('../models/CartItem');  // Import the CartItem model
 
 // Add item to cart
 router.post('/', async (req, res) => {
-    const { name, price, quantity } = req.body;
-    try {
-        const newProduct = new Product({ name, price, quantity });
-        await newProduct.save();
-        res.json(newProduct);
-    } catch (error) {
-        console.error('Error adding product to cart:', error);
-        res.status(500).json({ error: 'Failed to add product', details: error.message });
-    }
-});
+    const { name, price } = req.body;
 
-// Update item quantity
-router.put('/:id', async (req, res) => {
-    const { quantity } = req.body;
     try {
-        const updatedProduct = await Product.findByIdAndUpdate(req.params.id, { quantity }, { new: true });
-        res.json(updatedProduct);
-    } catch (error) {
-        res.status(500).json({ error: 'Failed to update product' });
-    }
-});
+        // Check if item already exists in the cart
+        let existingItem = await CartItem.findOne({ name });
 
-// Delete item from cart
-router.delete('/:id', async (req, res) => {
-    try {
-        await Product.findByIdAndDelete(req.params.id);
-        res.json({ message: 'Product removed' });
+        if (existingItem) {
+            // If the item exists, increase its quantity
+            existingItem.quantity += 1;
+            await existingItem.save();
+        } else {
+            // If it does not exist, create a new item
+            const newItem = new CartItem({ name, price, quantity: 1 });
+            await newItem.save();
+        }
+
+        res.status(200).json({ message: `${name} added to the cart!` });
     } catch (error) {
-        res.status(500).json({ error: 'Failed to remove product' });
+        console.error('Error adding to cart:', error);
+        res.status(500).json({ error: 'Failed to add item to cart' });
     }
 });
 
