@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const cartRoutes = require('../api/cart');
+const cartRoutes = require('/api/cart');
 
 dotenv.config();
 

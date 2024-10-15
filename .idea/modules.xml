@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/api.iml" filepath="$PROJECT_DIR$/api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/models.iml" filepath="$PROJECT_DIR$/models.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/sitioBackend.iml" filepath="$PROJECT_DIR$/.idea/sitioBackend.iml" />
     </modules>
   </component>
