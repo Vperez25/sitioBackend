@@ -114,31 +114,30 @@
     });
 
 
-        async function addToCart(productName, productPrice) {
+    async function addToCart(productName, productPrice) {
         try {
+            const response = await fetch('/api/cart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: productName,
+                    price: productPrice
+                })
+            });
 
-        const response = await fetch('/api/cart', {
-        method: 'POST',
-        headers: {
-        'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-        name: productName,
-        price: productPrice
-        })
-        });
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(errorText);  // Handle the error text from server
+            }
 
-        const result = await response.json();
-
-        if (response.ok) {
-             alert(result.message);  // Show a success message to the user
-        } else {
-            alert('Failed to add item to cart. Please try again.');
-        }
+            const result = await response.json();
+            alert(result.message);  // Show success message
         } catch (error) {
             console.error('Error adding to cart:', error);
-            alert('Error adding item to cart.');
-    }
+            alert('Error adding item to cart: ' + error.message);  // Display error message
+        }
     }
 
 

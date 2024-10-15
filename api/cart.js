@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const CartItem = require("models/cartItem");  // Import the CartItem model
+const CartItem = require('../models/cartItem');  // Import the CartItem model
 
 // Add item to cart
 router.post('/', async (req, res) => {
@@ -23,8 +23,9 @@ router.post('/', async (req, res) => {
         res.status(200).json({ message: `${name} added to the cart!` });
     } catch (error) {
         console.error('Error adding to cart:', error);
-        res.status(500).json({ error: 'Failed to add item to cart' });
+        res.status(500).json({ error: 'Failed to add item to cart' });  // Send JSON response
     }
 });
 
 module.exports = router;
+
