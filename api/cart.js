@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const CartItem = require('../models/CartItem');  // Import the CartItem model
+const CartItem = require('/models/CartItem');  // Import the CartItem model
 
 // Add item to cart
 router.post('/', async (req, res) => {

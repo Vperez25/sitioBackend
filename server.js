@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const cartRoutes = require('./api/cart');
+const cartRoutes = require('/api/cart');
 
 dotenv.config();
 
@@ -20,7 +20,7 @@ mongoose.connect(process.env.MONGODB_URI, {
     .catch((err) => console.error('MongoDB connection error:', err));
 
 // Use the cart route for handling requests to /api/cart
-app.use('./api/cart', cartRoutes);
+app.use('/api/cart', cartRoutes);
 
 // Serve static files (like your HTML, CSS, and images)
 app.use(express.static('public'));
