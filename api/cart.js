@@ -5,7 +5,7 @@ const CartItem = require('../models/CartItem');
 
 router.post('/', async (req, res) => {
     const { name, price } = req.body;
-
+    console.log(name, price);
     try {
 
 
