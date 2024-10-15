@@ -8,17 +8,11 @@ router.post('/', async (req, res) => {
 
     try {
 
-        let existingItem = await CartItem.findOne({ name });
 
-        if (existingItem) {
-
-            existingItem.quantity += 1;
-            await existingItem.save();
-        } else {
 
             const newItem = new CartItem({ name, price, quantity: 1 });
             await newItem.save();
-        }
+
 
         res.status(200).json({ message: `${name} added to the cart!` });
     } catch (error) {

@@ -114,7 +114,7 @@
     });
 
 
-    async function addToCart(productName, productPrice) {
+    async function addToCart(name, price) {
         try {
             const response = await fetch('/api/cart', {
                 method: 'POST',
@@ -122,8 +122,8 @@
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    name: productName,
-                    price: productPrice
+                    name: name,
+                    price: price
                 })
             });
 
